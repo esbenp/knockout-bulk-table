@@ -4,11 +4,34 @@
     <meta charset="utf-8">
     <title>Examples</title>
 
+    <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap-theme.css">
     <script data-main="amd" src="../bower_components/requirejs/require.js"></script>
 </head>
 <body>
 
-	
+	<div id="container" style="margin:100px">
+        <div data-bind="with: {dataTable: exampleTable, bulkActions: bulkActions}">
+            <table class="table">
+                <thead>
+                    <th width="1%" data-bind="bulkActions: bulkActions"></th>
+                    <th data-bind="click: dataTable.toggleSort('cityName')" class="sortable">Cityname</th>
+                    <th data-bind="click: dataTable.toggleSort('countryName')" class="sortable">countryName</th>
+                    <th data-bind="click: dataTable.toggleSort('population')" class="sortable">population</th>
+                </thead>
+                <tbody>
+                    <!-- ko foreach: {data: dataTable.pagedRows, as: '$row'}  -->
+                    <tr>
+                        <td><input type="checkbox" data-bind="checked: $parent.bulkActions.checked, checkedValue: $row.id"></td>
+                        <td data-bind="text: $row.cityName"></td>
+                        <td data-bind="text: $row.countryName"></td>
+                        <td data-bind="text: $row.population"></td>
+                    </tr>
+                    <!-- /ko -->
+                </tbody>
+            </table>
+        </div>   
+    </div>
 
 </body>
 </html>
